@@ -10,6 +10,8 @@
 #include <readline/history.h>
 
 int main(int argc, char **argv){
+	rl_bind_key ('\t', rl_insert);
+
 	char *command = malloc(BUFSIZE * sizeof(char *));
 
 	if(command == NULL){
