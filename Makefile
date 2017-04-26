@@ -5,6 +5,8 @@ WARNINGS := -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align \
 			-Wredundant-decls -Wnested-externs -Winline -Wno-long-long \
 			-Wuninitialized -Wconversion -Wstrict-prototypes
 
+PREFIX ?= /usr/local
+
 CFLAGS = -fdiagnostics-color=always -std=gnu11 -c -g
 
 SOURCES := $(wildcard *.c)
@@ -26,6 +28,12 @@ debug: $(SOURCES)
 
 .c.d:
 	$(CC) -o $< -MM $(CFLAGS)
+
+install: all
+	cp -f rrepl $(PREFIX)/bin/rrepl
+
+uninstall:
+	rm -f $(PREFIX)/bin/rrepl
 
 clean:
 	rm -rf $(OBJECTS)
